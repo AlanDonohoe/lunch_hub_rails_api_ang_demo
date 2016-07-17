@@ -3,12 +3,13 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
-var exec = require('child_process').exec;
 
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
 
 var util = require('util');
+
+var exec = require('child_process').exec;
 
 var proxyMiddleware = require('http-proxy-middleware');
 
@@ -40,7 +41,6 @@ function browserSyncInit(baseDir, browser) {
   // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', changeOrigin: true});
 
   browserSync.instance = browserSync.init({
-    port: 9000,
     startPath: '/',
     server: server,
     browser: browser
@@ -56,7 +56,7 @@ gulp.task('serve', ['watch'], function () {
 });
 
 gulp.task('rails', function() {
-   exec("../bin/rails s");
+  exec('rails server');
 });
 
 gulp.task('serve:full-stack', ['rails', 'serve']);
